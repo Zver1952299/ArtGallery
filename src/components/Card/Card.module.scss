@@ -1,0 +1,65 @@
+@import '../../scss/variables';
+
+.card {
+  width: 392px;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    height: 82px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $primary_black;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 168px;
+      height: 42px;
+      padding-left: 20px;
+      border-left: 2px solid $accent_gold;
+
+      h3 {
+        font-family: 'Cormorant SC', serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+
+      h4 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 0.8rem;
+        color: $accent_gold;
+      }
+    }
+  }
+}
+
+@media (max-width: 1364px) {
+  .card {
+    width: 352px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    width: 280px;
+    height: 185px;
+  }
+}

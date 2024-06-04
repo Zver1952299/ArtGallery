@@ -1,0 +1,10 @@
+@import '../../scss/variables';
+
+.sort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background-color: $secondary_black;
+}

@@ -1,0 +1,64 @@
+@import '../../scss/variables';
+
+.container {
+  display: inline-flex;
+  justify-content: center;
+  text-align: start;
+  margin: 40px 0 100px;
+  color: $primary_light_gray;
+
+  a {
+    cursor: pointer;
+  }
+
+  .page {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2px;
+
+    & a {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+  }
+
+  .next,
+  .prev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .next {
+    margin-left: 25px;
+  }
+
+  .prev {
+    margin-right: 25px;
+  }
+
+  .break {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .selected {
+    background-color: $secondary_black;
+    cursor: default;
+
+    a {
+      font-weight: 500;
+    }
+  }
+
+  .disabledArrow {
+    cursor: default;
+    filter: brightness(50%);
+  }
+}
