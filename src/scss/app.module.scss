@@ -1,12 +1,8 @@
 @import './libs/normalize';
 @import './variables';
 
-body {
-  background-color: $primary_black;
-  color: $primary_white;
-}
-
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,4 +11,18 @@ body {
   background-color: transparent;
   padding: 0 20px;
   text-align: center;
+}
+
+:root[data-theme='dark'] {
+  body {
+    background-color: $primary_black;
+    color: $primary_white;
+  }
+}
+
+:root[data-theme='light'] {
+  body {
+    background-color: $primary_white;
+    color: $primary_black;
+  }
 }

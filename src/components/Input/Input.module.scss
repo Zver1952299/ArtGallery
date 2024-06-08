@@ -1,0 +1,24 @@
+@import '../../scss/variables';
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    width: 67px;
+    height: 36px;
+    background-color: $secondary-black;
+    color: $primary-light-gray;
+    border: none;
+    padding: 0 16px;
+
+    &::placeholder {
+      color: $primary-dark-gray;
+    }
+  }
+
+  span {
+    color: $primary-dark-gray;
+  }
+}

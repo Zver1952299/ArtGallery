@@ -23,6 +23,19 @@
   }
 }
 
+:root[data-theme='light'] {
+  .search {
+    .input {
+      background-color: $primary_white;
+      color: $primary_dark_gray;
+      border: 1px solid $primary_light_gray;
+      &::placeholder {
+        color: $secondary_gray;
+      }
+    }
+  }
+}
+
 @media (max-width: 1364px) {
   .search {
     .input {

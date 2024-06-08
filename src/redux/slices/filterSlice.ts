@@ -1,13 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// import { RootState } from '@reduxjs/toolkit/query';
-
 export type FilterSliceState = {
   searchValue: string;
+  valueAuthor: string;
+  valueLocation: string;
+  valueAgeFrom: string;
+  valueAgeTo: string;
+  isOpen: boolean;
 };
 
 const initialState: FilterSliceState = {
   searchValue: '',
+  valueAuthor: '',
+  valueLocation: '',
+  valueAgeFrom: '',
+  valueAgeTo: '',
+  isOpen: false,
 };
 
 const filterSlice = createSlice({
@@ -17,8 +25,30 @@ const filterSlice = createSlice({
     setSearchValue(state, action: PayloadAction<string>) {
       state.searchValue = action.payload;
     },
+    setValueAuthor(state, action: PayloadAction<string>) {
+      state.valueAuthor = action.payload;
+    },
+    setValueLocation(state, action: PayloadAction<string>) {
+      state.valueLocation = action.payload;
+    },
+    setValueAgeFrom(state, action: PayloadAction<string>) {
+      state.valueAgeFrom = action.payload;
+    },
+    setValueAgeTo(state, action: PayloadAction<string>) {
+      state.valueAgeTo = action.payload;
+    },
+    setIsOpen(state, action: PayloadAction<boolean>) {
+      state.isOpen = action.payload;
+    },
   },
 });
 
-export const { setSearchValue } = filterSlice.actions;
+export const {
+  setSearchValue,
+  setIsOpen,
+  setValueLocation,
+  setValueAuthor,
+  setValueAgeFrom,
+  setValueAgeTo,
+} = filterSlice.actions;
 export default filterSlice.reducer;

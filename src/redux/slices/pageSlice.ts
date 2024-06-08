@@ -7,7 +7,7 @@ export interface CurrentPageState {
 }
 
 const initialState: CurrentPageState = {
-  currentPage: 0,
+  currentPage: 1,
   searchPages: [],
 };
 

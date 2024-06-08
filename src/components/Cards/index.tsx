@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useRef } from 'react';
-import { useGetArtQuery } from '../../redux/artApi';
+import { memo, useEffect, useRef } from 'react';
+import {
+  useGetArtByParamsQuery,
+  useGetTotalAuthorsQuery,
+  useGetTotalLocationsQuery,
+} from '../../redux/query/artApi';
 import { RootState } from '../../redux/store';
 import { setTotalPage } from '../../redux/slices/pageSlice';
 import Card from '../Card';
@@ -15,12 +19,20 @@ function Cards() {
     (state: RootState) => state.currentPage.currentPage
   );
 
-  const searchValue = useSelector(
-    (state: RootState) => state.filter.searchValue
-  );
+  const { searchValue, valueAuthor, valueLocation, valueAgeFrom, valueAgeTo } =
+    useSelector((state: RootState) => state.filter);
 
-  const { data = [], isLoading } = useGetArtQuery({ searchValue, currentPage });
-  console.log(data);
+  const { data: authors = [] } = useGetTotalAuthorsQuery('');
+  const { data: locations = [] } = useGetTotalLocationsQuery('');
+
+  const { data = [], isLoading } = useGetArtByParamsQuery({
+    searchValue,
+    currentPage,
+    valueAuthor,
+    valueLocation,
+    valueAgeFrom,
+    valueAgeTo,
+  });
 
   useEffect(() => {
     dispatch(setTotalPage(data));
@@ -41,10 +53,15 @@ function Cards() {
   return (
     <div className={styles.cards}>
       {data.map((item) => (
-        <Card data={item} key={item.id} />
+        <Card
+          data={item}
+          key={item.id}
+          authors={authors[item.authorId - 1]}
+          locations={locations[item.locationId - 1]}
+        />
       ))}
     </div>
   );
 }
 
-export default Cards;
+export default memo(Cards);

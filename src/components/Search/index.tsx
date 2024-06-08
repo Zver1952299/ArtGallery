@@ -1,15 +1,18 @@
 import { ChangeEvent, useMemo, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
 import { setSearchValue } from '../../redux/slices/filterSlice';
 
-import searchIcon from '../../assets/Search/search.svg';
+import searchDark from '../../assets/Search/searchDark.svg';
+import searchLight from '../../assets/Search/searchLight.svg';
 import styles from './Search.module.scss';
+import { RootState } from '../../redux/store';
 
 function Search() {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   const updateSearchValue = useMemo(
     () =>
@@ -33,7 +36,11 @@ function Search() {
         value={value}
         onChange={(e) => onChangeInput(e)}
       />
-      <img src={searchIcon} alt="searchIcon" className={styles.icon} />
+      <img
+        src={theme === 'dark' ? searchDark : searchLight}
+        alt="searchIcon"
+        className={styles.icon}
+      />
     </div>
   );
 }

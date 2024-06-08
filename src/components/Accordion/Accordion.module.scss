@@ -1,0 +1,28 @@
+@import '../../scss/variables';
+
+.blockMain {
+  width: 100%;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: $primary_white !important;
+  margin: 0 !important;
+
+  .blockUp {
+    min-height: 40px !important;
+    align-items: center;
+    text-transform: uppercase;
+  }
+
+  .blockDown {
+    margin: 12px 0 !important;
+  }
+
+  div {
+    font-family: 'Cormorant SC', serif !important;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+    margin: 0 !important;
+    padding: 0;
+  }
+}

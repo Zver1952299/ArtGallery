@@ -1,11 +1,13 @@
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPage } from '../../redux/slices/pageSlice';
-import { useGetTotalArtQuery } from '../../redux/artApi';
-import { RootState, store } from '../../redux/store';
+import { useGetTotalArtQuery } from '../../redux/query/artApi';
+import { RootState } from '../../redux/store';
 
-import arrowPrev from '../../assets/Pagination/arrowPrev.svg';
-import arrowNext from '../../assets/Pagination/arrowNext.svg';
+import arrowPrevDark from '../../assets/Pagination/arrowPrevDark.svg';
+import arrowNextDark from '../../assets/Pagination/arrowNextDark.svg';
+import arrowPrevLight from '../../assets/Pagination/arrowPrevLight.svg';
+import arrowNextLight from '../../assets/Pagination/arrowNextLight.svg';
 
 import styles from './pagination.module.scss';
 
@@ -14,26 +16,30 @@ type EventType = {
 };
 
 function Pagination() {
+  console.log('render pagin');
+
   const dispatch = useDispatch();
 
-  const searchValue = useSelector(
-    (state: RootState) => state.filter.searchValue
+  const { searchValue, valueAuthor, valueLocation, valueAgeFrom, valueAgeTo } =
+    useSelector((state: RootState) => state.filter);
+  const searchPages = useSelector(
+    (state: RootState) => state.currentPage.searchPages
   );
+  const theme = useSelector((state: RootState) => state.theme.theme);
+  console.log(theme);
 
-  // const searchPages = useSelector(
-  //   (state: RootState) => state.currentPage.searchPages
-  // );
-  const { searchPages } = store.getState().currentPage;
-  console.log(searchPages);
-
-  const { data = [] } = useGetTotalArtQuery(1);
+  const { data = [] } = useGetTotalArtQuery('');
 
   const handlePageClick = (e: EventType) =>
     dispatch(setCurrentPage(e.selected + 1));
 
   return (
     !searchValue &&
-    !!searchPages.length && (
+    !!searchPages.length &&
+    !valueAuthor &&
+    !valueLocation &&
+    !valueAgeFrom &&
+    !valueAgeTo && (
       <ReactPaginate
         pageCount={Math.ceil(data.length / 6)}
         onPageChange={handlePageClick}
@@ -46,8 +52,18 @@ function Pagination() {
         activeClassName={styles.selected}
         breakClassName={styles.break}
         disabledClassName={styles.disabledArrow}
-        previousLabel={<img src={arrowPrev} alt="arrowPrev" />}
-        nextLabel={<img src={arrowNext} alt="arrowNext" />}
+        previousLabel={
+          <img
+            src={theme === 'dark' ? arrowPrevDark : arrowPrevLight}
+            alt="arrowPrev"
+          />
+        }
+        nextLabel={
+          <img
+            src={theme === 'dark' ? arrowNextDark : arrowNextLight}
+            alt="arrowNext"
+          />
+        }
       />
     )
   );

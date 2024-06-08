@@ -1,12 +1,32 @@
-import logo from '../../assets/Header/logo.svg';
-import light_icon from '../../assets/Header/light_icon.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTheme } from '../../redux/slices/themeSlice';
+
+import logoDark from '../../assets/Header/logo_dark.svg';
+import logoLight from '../../assets/Header/logo_light.svg';
+import darkIcon from '../../assets/Header/dark_icon.svg';
+import lightIcon from '../../assets/Header/light_icon.svg';
+
 import styles from './Header.module.scss';
+import { RootState } from '../../redux/store';
 
 function Header() {
+  const theme = useSelector((state: RootState) => state.theme.theme);
+  const dispatch = useDispatch();
+  const changeTheme = (t: string) => (t === 'dark' ? 'light' : 'dark');
+  const handlerTheme = () => {
+    dispatch(setTheme(changeTheme(theme)));
+  };
+
   return (
     <div className={styles.header}>
-      <img src={logo} alt="logo" className={styles.logo} />
-      <img src={light_icon} alt="ligth_icon" />
+      <img
+        src={theme === 'dark' ? logoDark : logoLight}
+        alt="logo"
+        className={styles.logo}
+      />
+      <button className={styles.button} type="button" onClick={handlerTheme}>
+        <img src={theme === 'dark' ? darkIcon : lightIcon} alt="icon" />
+      </button>
     </div>
   );
 }
