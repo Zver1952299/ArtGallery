@@ -18,6 +18,7 @@ function Header() {
 
   const handlerTheme = () => {
     dispatch(setTheme(changeTheme(theme)));
+    localStorage.setItem('theme', theme);
   };
 
   return (

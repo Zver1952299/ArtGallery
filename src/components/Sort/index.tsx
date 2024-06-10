@@ -6,8 +6,8 @@ import { setIsOpen } from '../../redux/slices/filterSlice';
 
 import useClickOutside from '../../hooks/useClickOutside';
 
-import sortDark from '../../assets/Sort/sortDark.svg';
-import sortLight from '../../assets/Sort/sortLight.svg';
+import sortDark from '../../assets/Sort/arrowDark.svg';
+import sortLight from '../../assets/Sort/arrowLight.svg';
 
 import { FilterMenuRef } from '../../types/arts';
 

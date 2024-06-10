@@ -29,7 +29,7 @@
     margin-left: auto;
     margin-right: 100px;
     text-align: end;
-    margin-bottom: 100px;
+    margin-bottom: 93px;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -64,14 +64,22 @@
     text-transform: uppercase;
 
     .showBtn {
-      text-decoration: underline $primary_light_gray;
-      color: $primary_light_gray;
+      text-decoration: underline $primary_dark_gray;
+      color: $primary_dark_gray !important;
       background-color: inherit;
       border: none;
       font-size: 0.8rem;
       font-weight: 500;
       text-transform: uppercase;
       cursor: pointer;
+
+      &:hover {
+        color: $primary_black !important;
+      }
+
+      &:disabled {
+        color: $secondary-gray !important;
+      }
     }
 
     .clearBtn {
@@ -83,6 +91,10 @@
       font-weight: 500;
       text-transform: uppercase;
       cursor: pointer;
+
+      &:hover {
+        color: $primary_dark_gray !important;
+      }
     }
   }
 }
@@ -112,7 +124,7 @@
   }
 }
 
-@media (max-width: 1439px) {
+@media (max-width: 1365px) {
   .wrapper {
     padding-top: 24px;
     width: 372px;
@@ -138,7 +150,7 @@
 
     .closeBtn {
       margin-right: 20px;
-      margin-bottom: 103px;
+      margin-bottom: 92px;
     }
 
     .wrapperAccordion {

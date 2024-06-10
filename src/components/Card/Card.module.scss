@@ -96,6 +96,7 @@
     bottom: 0;
     left: 0;
     background-color: $primary_black;
+    transition: background-color 0.1s linear;
 
     &::after {
       content: '';
@@ -166,6 +167,7 @@
     .info {
       background-color: $primary_white;
       color: $primary_black;
+      transition: background-color 0.1s linear;
 
       &::after {
         background-color: $accent_red;
@@ -182,7 +184,7 @@
   }
 }
 
-@media (max-width: 1439px) {
+@media (max-width: 1365px) {
   .card {
     width: 352px;
     height: 220px;

@@ -83,10 +83,11 @@
       font-family: 'Inter', serif !important;
       font-weight: 300 !important;
       font-size: 0.8rem !important;
-      padding: 10px 0 !important;
+      padding: 0 0 10px !important;
       margin-left: 16px !important;
       margin-right: 40px !important;
       text-align: left !important;
+      line-height: 1.4 !important;
     }
   }
 
@@ -125,6 +126,7 @@
   .react-select {
     &__control {
       background-color: $primary_white !important;
+      border: 1px solid $primary-light-gray !important;
 
       &--is-focused {
         border: 1px solid $primary_dark_gray !important;

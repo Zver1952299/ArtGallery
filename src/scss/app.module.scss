@@ -16,6 +16,7 @@
   body {
     background-color: $primary_black;
     color: $primary_white;
+    transition: background-color 0.1s linear;
   }
 }
 
@@ -23,5 +24,6 @@
   body {
     background-color: $primary_white;
     color: $primary_black;
+    transition: background-color 0.1s linear;
   }
 }

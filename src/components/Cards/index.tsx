@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import { RootState } from '../../redux/store';
 import {
@@ -13,6 +15,16 @@ import Card from '../Card';
 import NotFound from '../NotFound';
 
 import styles from './Cards.module.scss';
+import Error from '../Error';
+
+const skeletonCounter = [
+  { id: 0 },
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
+];
 
 function Cards() {
   const isNotFound = useRef(false);
@@ -23,12 +35,25 @@ function Cards() {
   const currentPage = useSelector(
     (state: RootState) => state.currentPage.currentPage
   );
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
-  const { data: authors = [], isLoading: isLoadingAuthors } =
-    useGetTotalAuthorsQuery();
-  const { data: locations = [], isLoading: isLoadingLocation } =
-    useGetTotalLocationsQuery();
-  const { data = [], isLoading } = useGetArtByParamsQuery({
+  const {
+    data: authors = [],
+    isLoading: isLoadingAuthors,
+    isError: isErrorAuthors,
+  } = useGetTotalAuthorsQuery();
+
+  const {
+    data: locations = [],
+    isLoading: isLoadingLocation,
+    isError: isErrorLocations,
+  } = useGetTotalLocationsQuery();
+
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useGetArtByParamsQuery({
     searchValue,
     currentPage,
     valueAuthor,
@@ -41,6 +66,10 @@ function Cards() {
     dispatch(setTotalPage(data));
   }, [data, dispatch]);
 
+  if (isError && isErrorLocations && isErrorAuthors) {
+    return <Error />;
+  }
+
   if (!isLoading) {
     isNotFound.current = true;
   }
@@ -50,7 +79,20 @@ function Cards() {
   }
 
   if (isLoading || isLoadingAuthors || isLoadingLocation) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className={styles.cards}>
+        {skeletonCounter.map((item) => (
+          <Skeleton
+            className={styles.skeleton}
+            width={392}
+            height={260}
+            baseColor={theme === 'dark' ? '#121212' : '#fff'}
+            highlightColor={theme === 'dark' ? '#1a1818' : '#dedede'}
+            key={item.id}
+          />
+        ))}
+      </div>
+    );
   }
 
   return (

@@ -5,9 +5,17 @@ export interface ThemeState {
   theme: string;
 }
 
-const initialState: ThemeState = {
-  theme: 'dark',
+const getTheme = () => {
+  const theme = `${window?.localStorage?.getItem('theme')}`;
+  if (['light', 'dark'].includes(theme)) return { theme };
+
+  const userMedia = window.matchMedia('(prefers-color-scheme: light)');
+  if (userMedia.matches) return { theme: 'light' };
+
+  return { theme: 'dark' };
 };
+
+const initialState: ThemeState = getTheme();
 
 export const themeSlice = createSlice({
   name: 'theme',
