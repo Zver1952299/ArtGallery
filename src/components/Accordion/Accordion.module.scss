@@ -18,11 +18,18 @@
   }
 
   div {
-    font-family: 'Cormorant SC', serif !important;
+    font-family: 'Cormorant SC', serif;
     font-weight: 500;
     font-style: normal;
     font-size: 1rem;
-    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     padding: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .blockMain div {
+    font-size: 0.8rem;
   }
 }

@@ -1,6 +1,11 @@
+import { ComboType } from '../../types/arts';
+
 import styles from './Card.module.scss';
 
-function Card({ data, authors, locations }) {
+function Card({ data, authors, locations }: ComboType) {
+  const { name } = authors;
+  const { location } = locations;
+
   return (
     <div className={styles.card}>
       <img
@@ -13,8 +18,8 @@ function Card({ data, authors, locations }) {
           <h4>{data.created}</h4>
         </div>
         <div className={styles.location}>
-          <h3>{authors.name}</h3>
-          <h4>{locations.location}</h4>
+          <h3>{name}</h3>
+          <h4>{location}</h4>
         </div>
       </div>
     </div>

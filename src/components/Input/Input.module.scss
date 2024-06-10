@@ -22,3 +22,15 @@
     color: $primary-dark-gray;
   }
 }
+
+:root[data-theme='light'] {
+  .input {
+    input {
+      background-color: $primary-white;
+      color: $primary-dark-gray;
+      &::placeholder {
+        color: $secondary-gray;
+      }
+    }
+  }
+}

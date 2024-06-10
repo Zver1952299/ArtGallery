@@ -6,6 +6,7 @@ export type FilterSliceState = {
   valueLocation: string;
   valueAgeFrom: string;
   valueAgeTo: string;
+  visibleTitle: boolean;
   isOpen: boolean;
 };
 
@@ -15,6 +16,7 @@ const initialState: FilterSliceState = {
   valueLocation: '',
   valueAgeFrom: '',
   valueAgeTo: '',
+  visibleTitle: false,
   isOpen: false,
 };
 
@@ -37,6 +39,10 @@ const filterSlice = createSlice({
     setValueAgeTo(state, action: PayloadAction<string>) {
       state.valueAgeTo = action.payload;
     },
+    setVisibleTitle(state, action: PayloadAction<boolean>) {
+      state.visibleTitle = action.payload;
+    },
+
     setIsOpen(state, action: PayloadAction<boolean>) {
       state.isOpen = action.payload;
     },
@@ -45,6 +51,7 @@ const filterSlice = createSlice({
 
 export const {
   setSearchValue,
+  setVisibleTitle,
   setIsOpen,
   setValueLocation,
   setValueAuthor,

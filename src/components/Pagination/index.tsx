@@ -1,8 +1,10 @@
 import ReactPaginate from 'react-paginate';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentPage } from '../../redux/slices/pageSlice';
-import { useGetTotalArtQuery } from '../../redux/query/artApi';
+
 import { RootState } from '../../redux/store';
+import { useGetTotalArtQuery } from '../../redux/query/artApi';
+import { setCurrentPage } from '../../redux/slices/pageSlice';
 
 import arrowPrevDark from '../../assets/Pagination/arrowPrevDark.svg';
 import arrowNextDark from '../../assets/Pagination/arrowNextDark.svg';
@@ -16,8 +18,6 @@ type EventType = {
 };
 
 function Pagination() {
-  console.log('render pagin');
-
   const dispatch = useDispatch();
 
   const { searchValue, valueAuthor, valueLocation, valueAgeFrom, valueAgeTo } =
@@ -25,10 +25,10 @@ function Pagination() {
   const searchPages = useSelector(
     (state: RootState) => state.currentPage.searchPages
   );
-  const theme = useSelector((state: RootState) => state.theme.theme);
-  console.log(theme);
 
-  const { data = [] } = useGetTotalArtQuery('');
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
+  const { data = [] } = useGetTotalArtQuery();
 
   const handlePageClick = (e: EventType) =>
     dispatch(setCurrentPage(e.selected + 1));

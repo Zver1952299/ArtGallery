@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
+
+import { RootState } from '../../redux/store';
 import { setTheme } from '../../redux/slices/themeSlice';
 
 import logoDark from '../../assets/Header/logo_dark.svg';
@@ -7,12 +9,13 @@ import darkIcon from '../../assets/Header/dark_icon.svg';
 import lightIcon from '../../assets/Header/light_icon.svg';
 
 import styles from './Header.module.scss';
-import { RootState } from '../../redux/store';
 
 function Header() {
-  const theme = useSelector((state: RootState) => state.theme.theme);
   const dispatch = useDispatch();
+
+  const theme = useSelector((state: RootState) => state.theme.theme);
   const changeTheme = (t: string) => (t === 'dark' ? 'light' : 'dark');
+
   const handlerTheme = () => {
     dispatch(setTheme(changeTheme(theme)));
   };

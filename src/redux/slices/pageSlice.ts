@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+import type { Art } from '../../types/arts';
+
 export interface CurrentPageState {
   currentPage: number;
-  searchPages: object[];
+  searchPages: Art[];
 }
 
 const initialState: CurrentPageState = {
@@ -18,7 +20,7 @@ export const currentPageSlice = createSlice({
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
-    setTotalPage: (state, action: PayloadAction<object[]>) => {
+    setTotalPage: (state, action: PayloadAction<Art[]>) => {
       state.searchPages = action.payload;
     },
   },

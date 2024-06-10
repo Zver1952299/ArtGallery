@@ -1,13 +1,16 @@
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { memo, useEffect, useRef } from 'react';
+
+import { RootState } from '../../redux/store';
 import {
   useGetArtByParamsQuery,
   useGetTotalAuthorsQuery,
   useGetTotalLocationsQuery,
 } from '../../redux/query/artApi';
-import { RootState } from '../../redux/store';
 import { setTotalPage } from '../../redux/slices/pageSlice';
+
 import Card from '../Card';
+import NotFound from '../NotFound';
 
 import styles from './Cards.module.scss';
 
@@ -15,16 +18,16 @@ function Cards() {
   const isNotFound = useRef(false);
   const dispatch = useDispatch();
 
+  const { searchValue, valueAuthor, valueLocation, valueAgeFrom, valueAgeTo } =
+    useSelector((state: RootState) => state.filter);
   const currentPage = useSelector(
     (state: RootState) => state.currentPage.currentPage
   );
 
-  const { searchValue, valueAuthor, valueLocation, valueAgeFrom, valueAgeTo } =
-    useSelector((state: RootState) => state.filter);
-
-  const { data: authors = [] } = useGetTotalAuthorsQuery('');
-  const { data: locations = [] } = useGetTotalLocationsQuery('');
-
+  const { data: authors = [], isLoading: isLoadingAuthors } =
+    useGetTotalAuthorsQuery();
+  const { data: locations = [], isLoading: isLoadingLocation } =
+    useGetTotalLocationsQuery();
   const { data = [], isLoading } = useGetArtByParamsQuery({
     searchValue,
     currentPage,
@@ -43,10 +46,10 @@ function Cards() {
   }
 
   if (isNotFound.current && !data.length) {
-    return <h1>Not Found</h1>;
+    return <NotFound text={searchValue} />;
   }
 
-  if (isLoading) {
+  if (isLoading || isLoadingAuthors || isLoadingLocation) {
     return <h1>Loading...</h1>;
   }
 
@@ -64,4 +67,4 @@ function Cards() {
   );
 }
 
-export default memo(Cards);
+export default Cards;

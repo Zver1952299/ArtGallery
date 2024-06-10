@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { InputProps } from '../../types/arts';
+
 import styles from './Input.module.scss';
 
 function Input({
@@ -6,9 +7,7 @@ function Input({
   valueTo,
   onChangeInputFromValue,
   onChangeInputToValue,
-}) {
-  console.log(valueFrom, '---', valueTo);
-
+}: InputProps) {
   return (
     <form className={styles.input}>
       <input

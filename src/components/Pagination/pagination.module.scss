@@ -4,7 +4,7 @@
   display: inline-flex;
   justify-content: center;
   text-align: start;
-  margin: 5px 0 100px;
+  margin: 0 0 100px;
   color: $primary_light_gray;
 
   a {
@@ -50,10 +50,10 @@
 
   .selected {
     background-color: $secondary_black;
-    cursor: default;
 
     a {
       font-weight: 500;
+      cursor: default;
     }
   }
 
@@ -74,5 +74,11 @@
     .disabledArrow {
       opacity: 0.2;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    margin: 0 0 80px;
   }
 }

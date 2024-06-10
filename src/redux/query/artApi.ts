@@ -1,20 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// import { store } from './store';
-// const currentPageValue = store.getState().filter.searchValue;
-// console.log(currentPageValue);
-// ${searchValue ? `q=${searchValue}` : `_limit=6&_page=${currentPage}`}
+import { Art, ArtAuthors, ArtLocation, ArtTotalProps } from '../../types/arts';
 
 export const artApi = createApi({
   reducerPath: 'ArtApi',
   tagTypes: ['Arts'],
   baseQuery: fetchBaseQuery({ baseUrl: 'https://test-front.framework.team/' }),
   endpoints: (build) => ({
-    // getArt: build.query({
-    //   query: ({ searchValue = '', currentPage = 1 }) =>
-    //     `paintings?${!searchValue ? `_limit=6&_page=${currentPage}` : `q=${searchValue}`}`,
-    //   providesTags: ['Arts'],
-    // }),
-    getArtByParams: build.query({
+    getArtByParams: build.query<Art[], ArtTotalProps>({
       query: ({
         searchValue,
         currentPage,
@@ -27,15 +19,15 @@ export const artApi = createApi({
       providesTags: ['Arts'],
     }),
 
-    getTotalArt: build.query({
+    getTotalArt: build.query<Art[], void>({
       query: () => `paintings`,
     }),
 
-    getTotalAuthors: build.query({
+    getTotalAuthors: build.query<ArtAuthors[], void>({
       query: () => `authors`,
     }),
 
-    getTotalLocations: build.query({
+    getTotalLocations: build.query<ArtLocation[], void>({
       query: () => `locations`,
     }),
   }),
